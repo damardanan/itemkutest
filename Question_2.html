@@ -1,0 +1,48 @@
+<script>
+  document.write("<h3>Test result in Log Browser<h3>");
+
+  function solution(N, users) {
+    var answer = [];
+    var stagesCount = [];
+    // var stages = Array.apply(1, new Array(N));
+    // console.log(Array.apply(1, new Array(N)));
+
+    for (var i = 0; i < N; i++) {
+      stagesCount.push({
+        stages: i + 1,
+        userIn: 0,
+        userPass: 0
+      });
+    }
+
+    console.log(stagesCount);
+
+    for (var j = 0; j < users.length; j++) {
+      for (var k = 0; k < stagesCount.length; k++) {
+        if (users[j] == stagesCount[k].stages) {
+          stagesCount[k].userIn++;
+        } else {
+          stagesCount[k].userPass++;
+        }
+      }
+    }
+
+    console.log(stagesCount);
+
+    // users.forEach(function(item, index, array) {
+    //   console.log(item, index, array);
+    //   for (var j = 1; j <= N + 1; j++) {
+    //     if (item == j) {
+    //       stages.push({});
+    //     }
+    //   }
+    // });
+
+    return answer;
+  }
+
+  //input data
+  var N = 5;
+  var users = [2, 1, 2, 6, 2, 4, 3, 3];
+  console.log("Answer", solution(N, users));
+</script>

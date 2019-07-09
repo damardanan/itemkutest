@@ -1,0 +1,61 @@
+<script>
+  document.write("<h3>Test result in browser console<h3>");
+
+  function solution(record) {
+    var answer = [];
+    var text = ["came in", "has left"];
+
+    var statusData = [];
+    var idEnter = [];
+
+    var outName = "";
+    var outText = "";
+
+    for (var i = 0; i < record.length; i++) {
+      var getStatus = record[i].split(" ")[0];
+      var getUid = record[i].split(" ")[1];
+      var getName = record[i].split(" ")[2]; // undefined jika kosong
+
+      console.log(getStatus + getUid + getName);
+
+      if (typeof getName == "undefined") {
+        for (let j = 0; j < idEnter.length; j++) {
+          if (idEnter[j].id == getUid) {
+            outName = idEnter[j].name;
+          }
+        }
+      } else {
+        idEnter.push({
+          id: getUid,
+          name: getName
+        });
+        outName = getName;
+      }
+
+      switch (getStatus) {
+        case "Enter":
+          outText = text[0];
+          break;
+        case "Leave":
+          outText = text[1];
+          break;
+        default:
+          "";
+      }
+
+      if (getStatus != "Change") {
+        answer.push(outName + " " + outText);
+      }
+    }
+    return answer;
+  }
+
+  var input = [
+    "Enter uid1234 Muzi",
+    "Enter uid4567 Prodo",
+    "Leave uid1234",
+    "Enter uid1234 Prodo",
+    "Change uid4567 Ryan"
+  ];
+  console.log("Answer", solution(input));
+</script>
